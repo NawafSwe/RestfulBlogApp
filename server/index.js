@@ -46,14 +46,16 @@ Blog.create(
 );*/
 
 /* -------------------- app  RESTFUL routes --------------------*/
-
+app.get('/', (req, res) => { 
+  res.redirect('/blogs');
+});
 
 app.get('/blogs', (req, res) => { 
     Blog.find({}, (err, blogs) => {
         if (err) console.log('something were wrong');
         else {
             console.log(blogs);
-            res.render('index', {blogs: blogs});
+          res.render('index', {blogs:blogs});
         }
      })
 });
