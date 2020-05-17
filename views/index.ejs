@@ -1,6 +1,8 @@
 <%- include ('partials/header') %>
 
-<h1><%= blogs[0].title %></h1>
-<img src="<%= blogs[0].image_url%>" alt="">
-
+<% blogs.forEach((blog)=>{%>
+    <h2><%= blog.title%></h2>
+    <img src="<%=blog.image_url%>">
+    <p><%=blog.created%></p>
+<%})%>
 <%- include ('partials/footer') %>

@@ -37,18 +37,17 @@ const blogSchema = mongoose.Schema({
 });
 const Blog = mongoose.model('blog', blogSchema);
 
-/*
-Blog.create(
-  generate_blog(
-    'ios dev',
-    'https://relevant.software/wp-content/uploads/2020/01/photo-1484417894907-623942c8ee29-1-scaled.jpeg','good bro'
-  )
-);*/
 
 /* -------------------- app  RESTFUL routes --------------------*/
+
+
+/* the route '/' is redirecting to the index route '/blogs' */
 app.get('/', (req, res) => { 
   res.redirect('/blogs');
 });
+
+
+/* the route is INDEX -- Restful route where it shows all blogs */
 
 app.get('/blogs', (req, res) => { 
     Blog.find({}, (err, blogs) => {
@@ -59,7 +58,27 @@ app.get('/blogs', (req, res) => {
         }
      })
 });
+
+/* the route is NEW -- Restful route where it shows the form for creating new blog */
+app.get('/blogs/new', (req, res) => { 
+  res.render('new');
+});
+
+
+/* the route is CREATE -- Restful route where it posts the blog from the form to the database */
     
+app.post('/blogs', (req, res) => { 
+  Blog.create(req.body.blog, (err, blog) => { 
+    if (err)
+      res.render('new');
+    else {
+      // after adding new blog we redirect the user to the blogs page
+      console.log(blog);
+      res.redirect('/blogs');
+    }
+  });
+
+});
     
 /* -------------------- testing server connection --------------------*/
 const port = 3000;
