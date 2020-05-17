@@ -1,15 +1,32 @@
 <%- include ('partials/header') %>
+       
+     
+<div id="main_container" class="ui main text container">
+    <div class="ui huge header">Restful Blog App</div>
+    <div class="ui attached top segment">
+        <div class="ui divided items">
+            <%blogs.forEach((blog)=>{%>
+                <div class="item">
+                    <img class ="image" src="<%=blog.image_url%>" alt="">
+                    <div class="content">
+                        <a class="header" href="/blogs/<%=blog._id%>"><%=blog.title%></a>
+                        <div class="meta">
+                            <span><%=blog.created.toDateString()%></span>
+                        </div>
+                        <div class="description">
+                            <p><%-blog.body.substring(0,90)%> ... </p>
+                        </div>
+                        <div class="extra">
+                            <a class="ui floated inverted violet button" href="/blogs/<%=blog._id%>">Read more <i class="right chevron icon"></i></a>
 
-<% blogs.forEach((blog)=>{%>
-    <h2><%= blog.title%></h2>
-    <img class="ui image" src="<%=blog.image_url%>">
-    <span><%=blog.created.toDateString()%></span>
-    <p><%=blog.body.substring(0,90)%> ...</p>
-    <a class="ui inverted purple button" href="blogs/<%=blog._id%>">More!</a>
-    <a  class="ui inverted violet button" href="blogs/<%=blog._id%>/edit">edit post</a>
-    
+                        </div>
+                    </div>
+                </div>
+            <%})%>
+        </div>
 
-    
-    
-<%})%>
+    </div>
+
+</div>
+
 <%- include ('partials/footer') %>
