@@ -2,11 +2,11 @@
 
 <% blogs.forEach((blog)=>{%>
     <h2><%= blog.title%></h2>
-    <img src="<%=blog.image_url%>">
+    <img class="ui image" src="<%=blog.image_url%>">
     <span><%=blog.created.toDateString()%></span>
     <p><%=blog.body.substring(0,90)%> ...</p>
-    <p><a class="ui inverted violet button" href="blogs/<%=blog._id%>">More!</a></p>
-    <p><a  class="ui inverted violet button" href="blogs/<%=blog._id%>/edit">edit post</a></p>
+    <a class="ui inverted purple button" href="blogs/<%=blog._id%>">More!</a>
+    <a  class="ui inverted violet button" href="blogs/<%=blog._id%>/edit">edit post</a>
     
 
     
