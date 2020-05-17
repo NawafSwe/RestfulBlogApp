@@ -6,7 +6,7 @@ const  express     = require('express'),
        mongoose      = require('mongoose');
 
 /* -------------------- setting up app --------------------*/
-app.set(express.static('public'));
+app.use(express.static('public'));
 app.use(cors());
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({ extended: true }));
