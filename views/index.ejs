@@ -3,6 +3,8 @@
 <% blogs.forEach((blog)=>{%>
     <h2><%= blog.title%></h2>
     <img src="<%=blog.image_url%>">
-    <p><%=blog.created%></p>
+    <span><%=blog.created%></span>
+    <p><%=blog.body.substring(0,90)%></p>
+    <a href="blogs/<%=blog._id%>">More!</a>
 <%})%>
 <%- include ('partials/footer') %>

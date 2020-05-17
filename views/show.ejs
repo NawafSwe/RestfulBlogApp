@@ -1,0 +1,26 @@
+<%- include ('partials/header') %>
+<div id ="main_container" class="ui main text container segment"> 
+    <div class="ui huge header"><%= blog.title%></div>
+    <div class="ui top attached">
+        <div class="item">
+         <img class="ui centered rounded image" src="<%=blog.image_url%>">
+         <div class="content">
+         <span><%=blog.created.toDateString()%></span>
+         </div>
+         <div class="description">
+              <p><%-blog.body%></p>
+         </div>
+         
+          <a href="/blogs">go back!</a>
+        </div>
+    </div>
+    
+</div>
+
+
+
+
+
+<%- include ('partials/footer') %>
+
+
