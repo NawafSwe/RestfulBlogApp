@@ -5,9 +5,10 @@
     <img src="<%=blog.image_url%>">
     <span><%=blog.created.toDateString()%></span>
     <p><%=blog.body.substring(0,90)%> ...</p>
-    <p><a href="blogs/<%=blog._id%>">More!</a></p>
-    <p><a href="blogs/<%=blog._id%>/edit">edit blog</a></p>
-    <p></p>
+    <p><a class="ui inverted violet button" href="blogs/<%=blog._id%>">More!</a></p>
+    <p><a  class="ui inverted violet button" href="blogs/<%=blog._id%>/edit">edit post</a></p>
+    
+
     
     
 <%})%>

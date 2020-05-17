@@ -120,6 +120,19 @@ app.put('/blogs/:id', (req, res) => {
   });
 });
 
+
+/* this route is DESTROY -- RestFul route where it deletes a particular blog from the database*/
+app.delete('/blogs/:id', (req, res) => { 
+  Blog.findByIdAndDelete(req.params.id, (err) => { 
+    if (err) { 
+      res.redirect('/blogs');
+    } else {
+      //if the operation succeed go to the root page 
+      res.redirect('/blogs');
+    }
+  });
+});
+
 /* -------------------- testing server connection --------------------*/
 const port = 3000;
 app.listen(port, () => {
