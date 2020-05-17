@@ -1,6 +1,7 @@
 /* -------------------- importing packages --------------------*/
 const  express     = require('express'),
-       bodyParser    = require('body-parser'),
+       bodyParser = require('body-parser'),
+       methodOverride = require('method-override'),
        cors          = require('cors'),
        app           = express(),
        mongoose      = require('mongoose');
@@ -11,6 +12,7 @@ app.use(cors());
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use(methodOverride('_method'));
 
 
 
@@ -80,6 +82,7 @@ app.post('/blogs', (req, res) => {
 
 });
 
+/* this route is SHOW -- Restful  '/blogs/:id' where it shows more info about a particular blog */
 app.get('/blogs/:id', (req, res) => { 
   Blog.findById(req.params.id, (err, target) => { 
     if (err) {
@@ -90,7 +93,33 @@ app.get('/blogs/:id', (req, res) => {
     }
   });
 });
-    
+
+/* this route is EDIT -- where it display a form to edit some info about a particular blog*/
+
+app.get('/blogs/:id/edit', (req, res) => {
+  Blog.findById(req.params.id, (err, blog) => { 
+    if (err) { 
+      res.redirect('/blogs');
+    } else {
+      res.render('edit',{blog:blog});
+    }
+  });
+  
+});
+ 
+/* this route is UPDATE -- where it updates a blog from  a   form that comes from  edit to the data base*/
+app.put('/blogs/:id', (req, res) => { 
+  Blog.findByIdAndUpdate(req.params.id, req.body.blog,(err, blog) => { 
+    if (err) {
+      res.redirect('/blogs');
+
+    } else { 
+      // we want to redirect the user to the same blog after updating it
+      res.redirect('/blogs/'+req.params.id);
+    }
+  });
+});
+
 /* -------------------- testing server connection --------------------*/
 const port = 3000;
 app.listen(port, () => {
